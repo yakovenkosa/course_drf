@@ -8,10 +8,10 @@ app_name = UsersConfig.name
 
 
 router = DefaultRouter()
-router.register(r'profile', UserProfileViewSet, basename='user-profile')
-router.register(r'payments', PaymentsViewSet, basename='payments')
-router.register(r'users', UserViewSet, basename='users')
+router.register(r"profile", UserProfileViewSet, basename="user-profile")
+router.register(r"payments", PaymentsViewSet, basename="payments")
+router.register(r"users", UserViewSet, basename="users")
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path("", include(router.urls)),
 ]
