@@ -24,6 +24,6 @@ class PaymentsViewSet(viewsets.ModelViewSet):
     ordering_fields = ("payment_date",)
 
 
-class CustomsUserViewSet(viewsets.ModelViewSet):
+class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserDetailSerializer
