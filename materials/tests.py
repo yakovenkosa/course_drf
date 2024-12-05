@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.test import APITestCase
-from rest_framework_simplejwt.tokens import AccessToken
 from django.urls import reverse
 from materials.models import Course, Lesson, Subscription
 from users.models import User
@@ -14,7 +13,9 @@ class LessonTestCase(APITestCase):
     def setUp(self):
         self.user = User.objects.create(email="admintest@example.com")
         self.course = Course.objects.create(
-            name="Django REST Framework", description="32.1 Валидаторы, пагинация и тесты", owner=self.user
+            name="Django REST Framework",
+            description="32.1 Валидаторы, пагинация и тесты",
+            owner=self.user,
         )
         self.lesson = Lesson.objects.create(
             name="Django REST",
