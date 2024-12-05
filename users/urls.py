@@ -8,7 +8,7 @@ from users.views import (
     PaymentsViewSet,
     UserCreateAPIView,
     UserProfileViewSet,
-    UserViewSet,
+    UserViewSet, PaymentsCreateAPIView,
 )
 
 app_name = UsersConfig.name
@@ -28,4 +28,5 @@ urlpatterns = [
         name="login",
     ),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("paymentstripe/", PaymentsCreateAPIView.as_view(), name="paymentstripe"),
 ]
