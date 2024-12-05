@@ -4,6 +4,7 @@ from users.models import User
 
 
 class Course(models.Model):
+    """Модель курса на обучающей платформе"""
     name = models.CharField(
         max_length=150,
         verbose_name="Название курса",
@@ -38,6 +39,7 @@ class Course(models.Model):
 
 
 class Lesson(models.Model):
+    """Модель урока на обучающей платформе"""
     course = models.ForeignKey(
         Course,
         on_delete=models.SET_NULL,
@@ -86,6 +88,7 @@ class Lesson(models.Model):
 
 
 class Subscription(models.Model):
+    """Модель подписки на обучающей платформе"""
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
