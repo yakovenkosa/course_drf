@@ -11,6 +11,7 @@ from users.services import create_stripe_price, create_stripe_session
 
 class UserCreateAPIView(CreateAPIView):
     """Создание пользователя"""
+
     serializer_class = UserSerializer
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
@@ -23,6 +24,7 @@ class UserCreateAPIView(CreateAPIView):
 
 class UserProfileViewSet(viewsets.ModelViewSet):
     """Просмотр профиля пользователя"""
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -35,6 +37,7 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 
 class PaymentsViewSet(viewsets.ModelViewSet):
     """Просмотр платежей"""
+
     queryset = Payments.objects.all()
     serializer_class = PaymentsSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
@@ -44,8 +47,10 @@ class PaymentsViewSet(viewsets.ModelViewSet):
 
 class UserViewSet(viewsets.ModelViewSet):
     """Просмотр пользователя"""
+
     queryset = User.objects.all()
     serializer_class = UserDetailSerializer
+
 
 class PaymentsCreateAPIView(CreateAPIView):
     serializer_class = PaymentsSerializer
