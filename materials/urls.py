@@ -17,6 +17,7 @@ app_name = MaterialsConfig.name
 router = SimpleRouter()
 router.register("", CourseViewSet)
 
+
 urlpatterns = [
     path("lessons/", LessonListAPIView.as_view(), name="lessons_list"),
     path("lessons/<int:pk>/", LessonRetrieveAPIView.as_view(), name="lessons_retrieve"),
