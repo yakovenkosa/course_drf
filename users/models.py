@@ -70,7 +70,11 @@ class Payments(models.Model):
         max_digits=9, decimal_places=2, verbose_name="Сумма оплаты"
     )
     payment_method = models.CharField(
-        max_length=50, choices=PAYMENT_METHOD_CHOICES, blank=True, null=True, verbose_name="Cпособ оплаты"
+        max_length=50,
+        choices=PAYMENT_METHOD_CHOICES,
+        blank=True,
+        null=True,
+        verbose_name="Cпособ оплаты",
     )
     session_id = models.CharField(
         max_length=250,
