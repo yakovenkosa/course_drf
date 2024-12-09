@@ -10,3 +10,4 @@ pillow==11.0.0
 black==24.4.2
 stripe==11.3.0
 redis==5.2.1
+django-celery-beat-2.7.0
