@@ -1,4 +1,5 @@
 from django.utils.decorators import method_decorator
+from django_celery_beat.utils import now
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.generics import (
     CreateAPIView,
@@ -16,6 +17,9 @@ from materials.models import Course, Lesson, Subscription
 from materials.paginators import LessonPaginator, CoursePaginator
 from materials.serializer import CourseSerializer, LessonSerializer
 from users.permissions import IsModer, IsOwner
+import datetime
+from django.utils import timezone
+from materials.tasks import start_mailshot
 
 
 @method_decorator(
@@ -35,6 +39,9 @@ class CourseViewSet(ModelViewSet):
         course = serializer.save()
         course.owner = self.request.user
         course.save()
+
+        if course.updated_at < now - datetime.timedelta(hours=4):
+            start_mailshot.delay(course.id)
 
     def get_permissions(self):
         if self.action == "create":
