@@ -17,8 +17,6 @@ from materials.models import Course, Lesson, Subscription
 from materials.paginators import LessonPaginator, CoursePaginator
 from materials.serializer import CourseSerializer, LessonSerializer
 from users.permissions import IsModer, IsOwner
-import datetime
-from django.utils import timezone
 from materials.tasks import start_mailshot
 
 
@@ -40,8 +38,10 @@ class CourseViewSet(ModelViewSet):
         course.owner = self.request.user
         course.save()
 
-        if course.updated_at < now - datetime.timedelta(hours=4):
-            start_mailshot.delay(course.id)
+    def perform_update(self, serializer):
+        course = serializer.save()
+        start_mailshot.delay(course)
+        course.save()
 
     def get_permissions(self):
         if self.action == "create":
