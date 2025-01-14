@@ -21,8 +21,6 @@ services:
       timeout: 5s
       retries: 5
     restart: on-failure
-volumes:
-  pp_gdata:
 
   app:
       build: .
@@ -65,3 +63,6 @@ volumes:
       - app
     env_file:
       - .env
+
+volumes:
+  pp_gdata:
