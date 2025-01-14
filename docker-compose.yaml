@@ -12,7 +12,7 @@ services:
     env_file:
       - .env
     volumes:
-      - pp_gdata:/var/lib/postgresql/data/
+      - pp_gdata:/var/lib/postgresql/data
     healthcheck:
       test: [ "CMD-SHELL", "-c", "pg_isready -U $POSTGRES_USER" ]
       interval: 10s
